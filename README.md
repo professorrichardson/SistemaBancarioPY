@@ -111,25 +111,19 @@ Seu código deve conter obrigatoriamente:
 
 ----------
 
-## ⭐ Critérios de Avaliação (10 pontos)
+## ⭐ Critérios de Avaliação (30 pontos)
+| Critério | Valor |
+|--|--|
+| Menu funcional e repetitivo | 3,0 |
+| Depósito com validação correta | 5,0 |
+|Saque com validação e verificação de saldo  | 5,0 |
+| Extrato funcionando corretamente | 5,0 |
+| Uso adequado de funções (mínimo 3) | 3,0 |
+| Validação de erros (sem quebrar o programa) | 4,0 |
+| Organização, clareza e indentação | 3,0 |
+| Apresentação e explicação do código |2,0  |
 
-Critério
-
-Valor
-
-Menu funcional 1,0
-
-Depósito com validação 2,0
-
-Saque com validação 2,0
-
-Extrato funcionando 2,0
-
-Organização em funções 1,0
-
-Validação de erros 1,0
-
-Organização e clareza 1,0
+### Total 30 pontos
 
 ----------
 
