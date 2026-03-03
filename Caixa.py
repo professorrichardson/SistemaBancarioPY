@@ -1,14 +1,23 @@
+
+
 # ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+#Nome:Eloá Casarotto
+#Turma:3° Téc
 # ==========================================
+
+
+print("==========================================")
+print("===== SIMULADOR DE CAIXA ELETRÔNICO ======")
+print("==========================================")
+
+
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
 # ----------------------------
 saldo = 1000.0
 extrato = []
+depositar= []
 
 
 # ----------------------------
@@ -28,6 +37,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
     global saldo
+    saldo + depositar
     print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 
