@@ -1,9 +1,14 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome:Emanuelly Campos Heerdt
+# Turma:3 tec
 # ==========================================
-
+ # Cores no Terminal
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
 # ----------------------------
 # VARIÁVEIS GLOBAIS
 # ----------------------------
@@ -15,7 +20,9 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
+    print(AZUL+"\n=============================="+RESET)
+    print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
+    print(AZUL+"\n=============================="+RESET)
     print("1 - Consultar Saldo")
     print("2 - Depositar")
     print("3 - Sacar")
@@ -111,7 +118,7 @@ def main():
 
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção: ")
+        opcao = input(AMARELO+"Escolha uma opção: "+RESET)
 
         # TODO 12:
         # Validar se a opção é numérica.
