@@ -1,7 +1,7 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome:Nicolas Junior, Guilherme da Silva, Pedro Henrique. 
+# Turma: 3° Tecnico em Desenvolvimento de Sistema
 # ==========================================
 
 # ----------------------------
