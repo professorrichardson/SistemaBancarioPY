@@ -1,8 +1,12 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome: Eduarda de Paula Luciano
+# Turma: 3ºTec
 # ==========================================
+
+print("==========================================")
+print("======SIMULADOR DE CAIXA ELETRÔNICO=======")
+print("==========================================")
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
