@@ -1,8 +1,17 @@
-# ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
-# ==========================================
+import random
+#Cores no terminal PY
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
+
+
+print("==========================================")
+print("SIMULADOR DE CAIXA ELETRÔNICO")
+input("Digite seu nome: ")
+input("Digite sua senha: ")
+print("==========================================")
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
