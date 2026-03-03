@@ -17,7 +17,7 @@ print("==========================================")
 # ----------------------------
 saldo = 1000.0
 extrato = []
-depositar= []
+deposito = []
 
 
 # ----------------------------
@@ -37,7 +37,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
     global saldo
-    saldo + depositar
+    saldo + deposito
     print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 
