@@ -45,13 +45,17 @@ def depositar():
     global saldo
     global extrato
 
-    valor_str = input("Digite o valor para depósito: ")
+    valor = input("Digite o valor para depósito: ")
+
+    if valor <= 0:
+          print("O caixa só aceita números positivos!")
+          
 
     # TODO 1:
     # Validar se a entrada é numérica.
     # Caso não seja, exibir mensagem de erro e retornar.
 
-    valor = float(valor_str)
+    valor = float(valor)
 
     # TODO 2:
     # Verificar se o valor é positivo.
