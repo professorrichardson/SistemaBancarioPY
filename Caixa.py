@@ -41,8 +41,15 @@ def depositar():
     valor_str = input("Digite o valor para depósito: ")
 
     # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
+     # Tenta converter para float para aceitar inteiros e decimais
+    try:
+        valor = float(valor_str)
+        print(f"entrada valida {valor}")
+     
+    except ValueError:
+        # Se falhar, exibe erro e retorna
+        print("Valor inválido! Por favor, digite um número.")
+        return
 
     valor = float(valor_str)
 
