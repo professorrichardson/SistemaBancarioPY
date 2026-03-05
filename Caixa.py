@@ -20,6 +20,9 @@ saldo = 1000.0
 extrato = []
 
 
+def montrar_saldo():
+    print("Seu saldo atual é: ",saldo)
+
 # ----------------------------
 # FUNÇÃO: exibir_menu
 # ----------------------------
