@@ -3,10 +3,6 @@
 # Nome:Emanuelly Campos Heerdt
 # Turma:3 tec
 # ==========================================
-<<<<<<< HEAD
-=======
- # Cores no Terminal
->>>>>>> d2ebf64a8cdb4a4160b8a9e5bb9786d07f6145a5
 VERMELHO = "\033[31m"
 VERDE = "\033[32m"
 AMARELO = "\033[33m"
@@ -26,19 +22,11 @@ def exibir_menu():
     print(AZUL+"\n=============================="+RESET)
     print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
     print(AZUL+"\n=============================="+RESET)
-<<<<<<< HEAD
     print(VERDE+"1 - Consultar Saldo"+RESET)
     print(VERDE+"2 - Depositar"+RESET)
     print(VERDE+"3 - Sacar"+RESET)
     print(VERDE+"4 - Ver Extrato"+RESET)
     print(VERDE+"5 - Sair"+RESET)
-=======
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
->>>>>>> d2ebf64a8cdb4a4160b8a9e5bb9786d07f6145a5
 
 
 # ----------------------------
