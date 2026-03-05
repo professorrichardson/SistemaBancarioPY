@@ -29,7 +29,7 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-   print("\n====== CAIXA ELETRÔNICO ======")
+   print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
    print("1 - Consultar Saldo")
    print("2 - Depositar")
    print("3 - Sacar")
@@ -44,7 +44,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
    global saldo
-   print(f"\nSaldo atual: R$ {saldo:.2f}")
+   print(f"\n"+VERDE+"Saldo atual: R$ "+AMARELO+ f"{saldo:.2f}"+RESET)
 
 
 
@@ -64,15 +64,15 @@ def depositar():
 
    while True:
        try:
-           valor_str = input("Digite o valor para depósito: ")
+           valor_str = input(VERDE+"Digite o valor para depósito: "+RESET)
            valor = float(valor_str)
            if valor<=0:
-               print("O valor do depósito NÃO pode ser negativo ou zero")
+               print(VERMELHO+"O valor do depósito NÃO pode ser negativo ou zero"+RESET)
            elif valor>0:
                print("Valor válido")
                break
        except ValueError:
-           print("Valor Inválido")
+           print(VERMELHO+"Valor Inválido"+RESET)
           
           
 
@@ -94,8 +94,7 @@ def depositar():
 
    extrato.append(f"Depósito: + {valor:.2f}")
   
-   print("Depósito realizado com sucesso!")
-
+   print(VERDE+"Depósito realizado com sucesso!"+RESET)
 
 
 
@@ -117,14 +116,14 @@ def sacar():
             valor_str = input("Digite o valor para saque: ")
             valor = float(valor_str)
             if valor<=0:
-               print("O valor do saque NÃO pode ser negativo ou zero")
+               print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
             elif valor>saldo:
-                print("Saldo insuficiente")
+                print(VERMELHO+"Saldo insuficiente"+RESET)
             elif valor>0 and valor<=saldo:
                print("Valor válido")
                break
        except ValueError:
-           print("Valor Inválido")
+           print(VERMELHO+"Valor Inválido"+RESET)
 
 
 
@@ -137,7 +136,7 @@ def sacar():
 
    extrato.append(f"\nSaque: - {valor:.2f}")
   
-   print("Saque realizado com sucesso!")
+   print(VERDE+"Saque realizado com sucesso!"+RESET)
 
 
    # TODO 6:
@@ -164,6 +163,13 @@ def sacar():
 # ----------------------------
 def ver_extrato():
     global extrato
+   
+    if not extrato:
+       print("\n====== EXTRATO ======\n")
+       print(AMARELO+"Não foi realizado nenhum depósito ou saque até o momento"+RESET)
+    elif extrato:
+        print(AZUL+"\n====== EXTRATO ======\n"+RESET)
+        print(*extrato, sep="\n")
 
 
    # TODO 10:
