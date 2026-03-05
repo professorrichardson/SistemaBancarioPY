@@ -20,7 +20,8 @@ RESET = "\033[0m"
 # ----------------------------
 saldo = 1000.0
 extrato = []
-
+senhaSecreta = 12345
+valid0 = 0
 
 
 
@@ -61,6 +62,10 @@ def depositar():
    # Validar se a entrada é numérica.
    # Caso não seja, exibir mensagem de erro e retornar.
 
+   # TODO 2:
+   # Verificar se o valor é positivo.
+   # Caso não seja, exibir mensagem de erro e retornar.
+
 
    while True:
        try:
@@ -74,14 +79,6 @@ def depositar():
        except ValueError:
            print(VERMELHO+"Valor Inválido"+RESET)
           
-          
-
-
-   # TODO 2:
-   # Verificar se o valor é positivo.
-   # Caso não seja, exibir mensagem de erro e retornar.
-
-
    # TODO 3:
    # Atualizar o saldo.
 
@@ -106,9 +103,14 @@ def sacar():
    global extrato
 
 
-   # TODO 1:
+   # TODO 5:
    # Validar se a entrada é numérica.
-   # Caso não seja, exibir mensagem de erro e retornar.
+
+   # TODO 6:
+   # Verificar se o valor é positivo.
+
+   # TODO 7:
+   # Verificar se há saldo suficiente.
 
 
    while True:
@@ -126,36 +128,19 @@ def sacar():
            print(VERMELHO+"Valor Inválido"+RESET)
 
 
-
-
-
-
-   # TODO 4:
-   # Registrar a operação na lista extrato.
-   saldo = saldo - valor
-
-   extrato.append(f"\nSaque: - {valor:.2f}")
-  
-   print(VERDE+"Saque realizado com sucesso!"+RESET)
-
-
-   # TODO 6:
-   # Verificar se o valor é positivo.
-
-
-   # TODO 7:
-   # Verificar se há saldo suficiente.
-
-
    # TODO 8:
    # Atualizar saldo.
+
+
+   saldo = saldo - valor
 
 
    # TODO 9:
    # Registrar operação no extrato.
 
-
-
+   extrato.append(f"\nSaque: - {valor:.2f}")
+  
+   print(VERDE+"Saque realizado com sucesso!"+RESET)
 
 
 # ----------------------------
@@ -163,71 +148,86 @@ def sacar():
 # ----------------------------
 def ver_extrato():
     global extrato
-   
-    if not extrato:
-       print("\n====== EXTRATO ======\n")
-       print(AMARELO+"Não foi realizado nenhum depósito ou saque até o momento"+RESET)
-    elif extrato:
-        print(AZUL+"\n====== EXTRATO ======\n"+RESET)
-        print(*extrato, sep="\n")
-
 
    # TODO 10:
    # Verificar se a lista está vazia.
    # Se estiver, informar que não há movimentações.
-
+   
+    if not extrato:
+       print(AZUL+"\n====== EXTRATO ======\n"+RESET)
+       print(AMARELO+"Não foi realizado nenhum depósito ou saque até )o momento"+RESET)
 
    # TODO 11:
    # Percorrer a lista e exibir as operações.
 
-
+    elif extrato:
+        print(AZUL+"\n====== EXTRATO ======\n"+RESET)
+        print(*extrato, sep="\n")
 
 
 # ----------------------------
 # FUNÇÃO PRINCIPAL
 # ----------------------------
 def main():
+    global senhaSecreta
+    tentativas = 1
+    total_tentativas = 3
+    print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
+    print(AZUL+"\n==== SENHA REQUERIDA ===="+RESET)
+    while tentativas < 4:
+        try:
+            senha_str = input(VERDE+"\nDigite a Senha: "+RESET)
+            senha = int(senha_str)
+            if senha != senhaSecreta:
+                print(VERMELHO+"Senha incorreta! "+ AZUL+"Tente novamente"+RESET)
+                print(AMARELO+f"Tentativas restantes: {total_tentativas-tentativas}"+RESET)
+                tentativas = tentativas +1
+            elif senha == senhaSecreta:
+                print("Senha correta! Iniciando sistema!")
+                break
+        except ValueError:
+            print("Erro")
+            
+
+    while True:
 
 
-   while True:
-
-
-       try:
+        try:
+            if tentativas== 4:
+                print(VERMELHO+"Número de tentativas excedidas. Encerrando sistema"+RESET)
+                break
           
-           exibir_menu()
-           opcao = input("Escolha uma opção: ")
+            exibir_menu()
+            opcao = input("Escolha uma opção: ")
 
+            opcao = int(opcao)
 
-           # TODO 12:
-           # Validar se a opção é numérica.
+            # TODO 12:
+            # Validar se a opção é numérica.
 
-
-           opcao = int(opcao)
-
-
-           if opcao == 1:
+            if opcao == 1:
                consultar_saldo()
 
 
-           elif opcao == 2:
+            elif opcao == 2:
                depositar()
 
 
-           elif opcao == 3:
+            elif opcao == 3:
                sacar()
 
 
-           elif opcao == 4:
+            elif opcao == 4:
                ver_extrato()
 
 
-           elif opcao == 5:
-               print("Encerrando sistema...")
+            elif opcao == 5:
+               print(AZUL+"Encerrando sistema..."+RESET)
                break
-           else:
+            else:
                print(VERMELHO+"Opção inválida!"+RESET)
-       except ValueError:
-           print(VERMELHO+"Opção Inválida"+RESET)
+        except ValueError:
+            print(VERMELHO+"Opção Inválida"+RESET)
 
 
 
