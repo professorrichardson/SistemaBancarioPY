@@ -92,7 +92,7 @@ def depositar():
    # TODO 4:
    # Registrar a operação na lista extrato.
 
-   extrato.append(f"Depósito: + {valor}")
+   extrato.append(f"Depósito: + {valor:.2f}")
   
    print("Depósito realizado com sucesso!")
 
@@ -112,8 +112,32 @@ def sacar():
    # Caso não seja, exibir mensagem de erro e retornar.
 
 
+   while True:
+       try:
+            valor_str = input("Digite o valor para saque: ")
+            valor = float(valor_str)
+            if valor<=0:
+               print("O valor do saque NÃO pode ser negativo ou zero")
+            elif valor>saldo:
+                print("Saldo insuficiente")
+            elif valor>0 and valor<=saldo:
+               print("Valor válido")
+               break
+       except ValueError:
+           print("Valor Inválido")
+
+
+
+
+
+
    # TODO 4:
    # Registrar a operação na lista extrato.
+   saldo = saldo - valor
+
+   extrato.append(f"\nSaque: - {valor:.2f}")
+  
+   print("Saque realizado com sucesso!")
 
 
    # TODO 6:
@@ -139,11 +163,7 @@ def sacar():
 # FUNÇÃO: ver_extrato
 # ----------------------------
 def ver_extrato():
-   global extrato
-
-
-   print("\n====== EXTRATO ======\n")
-   print(*extrato, sep="\n")
+    global extrato
 
 
    # TODO 10:
