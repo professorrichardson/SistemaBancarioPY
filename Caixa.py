@@ -21,8 +21,7 @@ RESET = "\033[0m"
 saldo = 1000.0
 extrato = []
 senhaSecreta = 12345
-valid0 = 0
-
+limite_diario = 2000.00
 
 
 
@@ -69,12 +68,12 @@ def depositar():
 
    while True:
        try:
-           valor_str = input(VERDE+"Digite o valor para depósito: "+RESET)
+           valor_str = input(VERDE+"\nDigite o valor para depósito: "+RESET)
            valor = float(valor_str)
            if valor<=0:
                print(VERMELHO+"O valor do depósito NÃO pode ser negativo ou zero"+RESET)
            elif valor>0:
-               print("Valor válido")
+               print("\nValor válido")
                break
        except ValueError:
            print(VERMELHO+"Valor Inválido"+RESET)
@@ -89,9 +88,9 @@ def depositar():
    # TODO 4:
    # Registrar a operação na lista extrato.
 
-   extrato.append(f"Depósito: + {valor:.2f}")
+   extrato.append(f"\nDepósito: + {valor:.2f}")
   
-   print(VERDE+"Depósito realizado com sucesso!"+RESET)
+   print(VERDE+"\nDepósito realizado com sucesso!"+RESET)
 
 
 
@@ -101,7 +100,7 @@ def depositar():
 def sacar():
    global saldo
    global extrato
-
+   global limite_diario
 
    # TODO 5:
    # Validar se a entrada é numérica.
@@ -115,14 +114,17 @@ def sacar():
 
    while True:
        try:
-            valor_str = input("Digite o valor para saque: ")
+            valor_str = input(VERDE+"\nDigite o valor para saque: "+RESET)
             valor = float(valor_str)
             if valor<=0:
                print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
             elif valor>saldo:
-                print(VERMELHO+"Saldo insuficiente"+RESET)
+                print(VERMELHO+"Saldo insuficiente. Verifique seu saldo"+RESET)
+            elif (limite_diario-valor)<0:
+                print(VERMELHO+"Valor de saque diário excedido"+RESET)
+                print(AMARELO+f"Valor ainda disponível: {limite_diario}"+RESET)
             elif valor>0 and valor<=saldo:
-               print("Valor válido")
+               print("\nValor válido")
                break
        except ValueError:
            print(VERMELHO+"Valor Inválido"+RESET)
@@ -133,14 +135,16 @@ def sacar():
 
 
    saldo = saldo - valor
+   limite_diario = limite_diario - valor
 
-
+ 
    # TODO 9:
    # Registrar operação no extrato.
 
    extrato.append(f"\nSaque: - {valor:.2f}")
   
-   print(VERDE+"Saque realizado com sucesso!"+RESET)
+   print(VERDE+"\nSaque realizado com sucesso!"+RESET)
+   print(VERDE+f"\nLimite de saque diário restante: {limite_diario}"+RESET)
 
 
 # ----------------------------
@@ -161,23 +165,26 @@ def ver_extrato():
    # Percorrer a lista e exibir as operações.
 
     elif extrato:
-        print(AZUL+"\n====== EXTRATO ======\n"+RESET)
+        print(AZUL+"\n====== EXTRATO ======"+RESET)
         print(*extrato, sep="\n")
 
 
-# ----------------------------
-# FUNÇÃO PRINCIPAL
-# ----------------------------
-def main():
+def senha():
     global senhaSecreta
+    global tentativas
     tentativas = 1
     total_tentativas = 3
     print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
     print(AZUL+"\n==== SENHA REQUERIDA ===="+RESET)
-    while tentativas < 4:
+    while tentativas <= total_tentativas:
         try:
-            senha_str = input(VERDE+"\nDigite a Senha: "+RESET)
-            senha = int(senha_str)
+            if  tentativas == 3:
+                print(VERMELHO+"\nAPENAS 1 TENTATIVA RESTANTE"+RESET)
+                senha_str = input(VERDE+"Digite a Senha: "+RESET)
+                senha = int(senha_str)
+            else:
+                senha_str = input(VERDE+"\nDigite a Senha: "+RESET)
+                senha = int(senha_str)
             if senha != senhaSecreta:
                 print(VERMELHO+"Senha incorreta! "+ AZUL+"Tente novamente"+RESET)
                 print(AMARELO+f"Tentativas restantes: {total_tentativas-tentativas}"+RESET)
@@ -185,15 +192,22 @@ def main():
             elif senha == senhaSecreta:
                 print("Senha correta! Iniciando sistema!")
                 break
+            
         except ValueError:
             print("Erro")
-            
+    main(tentativas)
 
+
+# ----------------------------
+# FUNÇÃO PRINCIPAL
+# ----------------------------
+def main(tentativas):
+    
     while True:
-
+        
 
         try:
-            if tentativas== 4:
+            if tentativas == 4:
                 print(VERMELHO+"Número de tentativas excedidas. Encerrando sistema"+RESET)
                 break
           
@@ -235,7 +249,7 @@ def main():
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
-main()
+senha()
 
 
 
