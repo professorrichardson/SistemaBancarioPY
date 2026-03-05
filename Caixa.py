@@ -3,7 +3,11 @@
 # Nome:
 # Turma:
 # ==========================================
-
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
 # ----------------------------
 # VARIÁVEIS GLOBAIS
 # ----------------------------
@@ -15,12 +19,14 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
+    print(AZUL+"\n=============================="+RESET)
+    print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
+    print(AZUL+"\n=============================="+RESET)
+    print(VERDE+"1 - Consultar Saldo"+RESET)
+    print(VERDE+"2 - Depositar"+RESET)
+    print(VERDE+"3 - Sacar"+RESET)
+    print(VERDE+"4 - Ver Extrato"+RESET)
+    print(VERDE+"5 - Sair"+RESET)
 
 
 # ----------------------------
@@ -43,6 +49,13 @@ def depositar():
     # TODO 1:
     # Validar se a entrada é numérica.
     # Caso não seja, exibir mensagem de erro e retornar.
+    valor = float(valor_str)
+
+    if valor <= 0:
+          print("O caixa só aceita números positivos!")
+    elif valor > 1000:
+          print("O caixa não permite saque maior que R$ 1000.")
+          
 
     valor = float(valor_str)
 
