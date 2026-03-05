@@ -1,13 +1,13 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome: Nicolas, Guilherme, Pedro
+# Turma:3° Tecnico em Desenvolvimento de Sistema
 # ==========================================
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
 # ----------------------------
-saldo = 1000.0
+saldo = 3000.0
 extrato = []
 
 
