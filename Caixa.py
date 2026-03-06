@@ -98,9 +98,9 @@ def depositar():
 # FUNÇÃO: sacar
 # ----------------------------
 def sacar():
-   global saldo
-   global extrato
-   global limite_diario
+    global saldo
+    global extrato
+    global limite_diario
 
    # TODO 5:
    # Validar se a entrada é numérica.
@@ -110,41 +110,45 @@ def sacar():
 
    # TODO 7:
    # Verificar se há saldo suficiente.
-
-
-   while True:
-       try:
-            valor_str = input(VERDE+"\nDigite o valor para saque: "+RESET)
-            valor = float(valor_str)
-            if valor<=0:
-               print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
-            elif valor>saldo:
-                print(VERMELHO+"Saldo insuficiente. Verifique seu saldo"+RESET)
-            elif (limite_diario-valor)<0:
-                print(VERMELHO+"Valor de saque diário excedido"+RESET)
-                print(AMARELO+f"Valor ainda disponível: {limite_diario}"+RESET)
-            elif valor>0 and valor<=saldo:
-               print("\nValor válido")
-               break
-       except ValueError:
-           print(VERMELHO+"Valor Inválido"+RESET)
+    if limite_diario == 0:
+        print(AMARELO+"\nSeu limite diário acabou :(. Para sacar novamente, altere o valor de saque diário ou volte outro dia."+RESET)
+        main(tentativas)
+    else:
+        while True:
+            try:
+                valor_str = input(VERDE+"\nDigite o valor para saque: "+RESET)
+                valor = float(valor_str)
+                if valor<=0:
+                    print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
+                elif valor>saldo:
+                    print(VERMELHO+"Saldo insuficiente. Verifique seu saldo"+RESET)
+                elif (limite_diario-valor)<0:
+                    print(VERMELHO+"Valor de saque diário excedido"+RESET)
+                    print(AMARELO+f"Valor ainda disponível: {limite_diario:.2f}"+RESET)
+                elif valor>0 and valor<=saldo:
+                    print(VERDE+"\nValor válido"+RESET)
+                    break
+            except ValueError:
+                print(VERMELHO+"Valor Inválido"+RESET)
 
 
    # TODO 8:
    # Atualizar saldo.
 
-
-   saldo = saldo - valor
-   limite_diario = limite_diario - valor
-
  
    # TODO 9:
    # Registrar operação no extrato.
-
-   extrato.append(f"\nSaque: - {valor:.2f}")
-  
-   print(VERDE+"\nSaque realizado com sucesso!"+RESET)
-   print(VERDE+f"\nLimite de saque diário restante: {limite_diario}"+RESET)
+    confirmacao_str = input(VERDE+f"\nConfirma o saque no valor de {valor:.2f}?(digite 's' para SIM/digite 'n' para NÃO): "+RESET).lower()
+    if confirmacao_str =="s":
+        extrato.append(f"\nSaque: - {valor:.2f}")
+        saldo = saldo - valor
+        limite_diario = limite_diario - valor
+        print(VERDE+"\nSaque realizado com sucesso!"+RESET)
+        print(VERDE+f"\nLimite de saque diário restante: {limite_diario:.2f}"+RESET)
+        
+    elif confirmacao_str=="n":
+        print(VERDE+"Saque cancelado"+RESET)
+        
 
 
 # ----------------------------
@@ -166,7 +170,8 @@ def ver_extrato():
 
     elif extrato:
         print(AZUL+"\n====== EXTRATO ======"+RESET)
-        print(*extrato, sep="\n")
+        for historico in extrato:
+            print(historico)
 
 
 def senha():
@@ -183,7 +188,7 @@ def senha():
                 senha_str = input(VERDE+"Digite a Senha: "+RESET)
                 senha = int(senha_str)
             else:
-                senha_str = input(VERDE+"\nDigite a Senha: "+RESET)
+                senha_str = input(VERDE+"\nDigite a Senha(6 dígitos): "+RESET)
                 senha = int(senha_str)
             if senha != senhaSecreta:
                 print(VERMELHO+"Senha incorreta! "+ AZUL+"Tente novamente"+RESET)
@@ -235,7 +240,9 @@ def main(tentativas):
                ver_extrato()
 
 
-            elif opcao == 5:
+
+
+            elif opcao == 6:
                print(AZUL+"Encerrando sistema..."+RESET)
                break
             else:
