@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-#Cores no Terminal PY
->>>>>>> 5bfec83b213af4fd692844a1c4b24215df251908
+
 VERMELHO = "\033[31m"
 VERDE = "\033[32m"
 AMARELO = "\033[33m"
