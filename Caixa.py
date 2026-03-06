@@ -45,7 +45,6 @@ def exibir_menu():
 
 def consultar_saldo():
     global saldo
-    saldo + deposito
     print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 
@@ -57,12 +56,13 @@ def depositar():
     global extrato
 
     valor_str = input("Digite o valor para depósito: ")
+    if not valor_str.isdigit():
+        print (VERMELHO+" Digite apenas números positivos! "+ RESET)
+        
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    valor = float(valor_str)
+    else:
+        print("Depósito realizado com sucesso!")
+        
 
     # TODO 2:
     # Verificar se o valor é positivo.
@@ -73,8 +73,6 @@ def depositar():
 
     # TODO 4:
     # Registrar a operação na lista extrato.
-
-    print("Depósito realizado com sucesso!")
 
 
 # ----------------------------
@@ -133,11 +131,8 @@ def main():
         opcao_str = input("Escolha uma opção: ")
         if not opcao_str.isdigit():
             print(VERMELHO+"Opção inválida, digite apenas números!"+RESET)
-            print("Apenas números maiores que zeros")
+            print("Apenas números maiores que zero")
             continue
-        opcao >= 5
-
-        opcao = input("digite apenas números(1,2,3,4,5): ")
 
         opcao = int(opcao_str)
         if opcao == 1:
@@ -151,12 +146,12 @@ def main():
         
         elif opcao == 4:
            ver_extrato()
-        else:
-           opcao == 5
+
+        elif opcao == 5:
            print("Encerrando sistema...")
            break
-    else:
-        print("Opção inválida!")
+        else:
+            print (VERMELHO+"Escolha apenas 1, 2, 3, 4 ou 5"+RESET)
 
 
 # ----------------------------
