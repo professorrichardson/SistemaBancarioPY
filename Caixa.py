@@ -1,13 +1,20 @@
 
 
 # ==========================================
-#Nome:Eloá Casarotto
-#Turma:3° Téc
+# SIMULADOR DE CAIXA ELETRÔNICO
+# Nome: Eloá Casarotto
+# Turma: 3ºTec
 # ==========================================
 
+#Cores no terminal PY
+VERMELHO = "\033[31m"
+VERDE = "\033[032m"
+AMARELO = "\033[033m"
+AZUL = "\033[034m"
+RESET = "\033[0m"
 
 print("==========================================")
-print("===== SIMULADOR DE CAIXA ELETRÔNICO ======")
+print("======SIMULADOR DE CAIXA ELETRÔNICO=======")
 print("==========================================")
 
 
@@ -35,6 +42,7 @@ def exibir_menu():
 # ----------------------------
 # FUNÇÃO: consultar_saldo
 # ----------------------------
+
 def consultar_saldo():
     global saldo
     saldo + deposito
@@ -119,33 +127,36 @@ def ver_extrato():
 # ----------------------------
 def main():
 
+
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção: ")
+        opcao_str = input("Escolha uma opção: ")
+        if not opcao_str.isdigit():
+            print(VERMELHO+"Opção inválida, digite apenas números!"+RESET)
+            print("Apenas números maiores que zeros")
+            continue
+        opcao >= 5
 
-        # TODO 12:
-        # Validar se a opção é numérica.
+        opcao = input("digite apenas números(1,2,3,4,5): ")
 
-        opcao = int(opcao)
-
+        opcao = int(opcao_str)
         if opcao == 1:
             consultar_saldo()
-
+        
         elif opcao == 2:
-            depositar()
-
+           depositar()
+        
         elif opcao == 3:
-            sacar()
-
+           sacar()
+        
         elif opcao == 4:
-            ver_extrato()
-
-        elif opcao == 5:
-            print("Encerrando sistema...")
-            break
-
+           ver_extrato()
         else:
-            print("Opção inválida!")
+           opcao == 5
+           print("Encerrando sistema...")
+           break
+    else:
+        print("Opção inválida!")
 
 
 # ----------------------------
