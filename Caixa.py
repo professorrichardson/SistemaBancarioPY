@@ -1,7 +1,7 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome: Nicolas, guilherme, pedro
+# Turma:3° Tec
 # ==========================================
 
 # ----------------------------
@@ -26,7 +26,7 @@ def exibir_menu():
 # ----------------------------
 # FUNÇÃO: consultar_saldo
 # ----------------------------
-def consultar_saldo():
+def consultar_saldo(valor_operacao, operacao='deposito'):
     global saldo
     print(f"\nSaldo atual: R$ {saldo:.2f}")
 
@@ -41,20 +41,32 @@ def depositar():
     valor_str = input("Digite o valor para depósito: ")
 
     # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    valor = float(valor_str)
+    try:
+        valor = float(valor_str)
+    except ValueError:
+        print("Erro: Entrada inválida. Por favor, digite um número.")
+        return
 
     # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
+    if valor <= 0:
+        print("Erro: o valor deve ser positivo.")
+        return
+    
 
     # TODO 3:
-    # Atualizar o saldo.
+    saldo += valor
+    extrato.append(f"Depósito: R$ {valor:.2f}")
+    print("Depósito realizado com sucesso!")
 
     # TODO 4:
-    # Registrar a operação na lista extrato.
+def exibir_extrato():
+    print("\n--- EXTRATO ---")
+    if not extrato:
+        print("Não foram realizadas movimentações.")
+    else:
+        for mov in extrato:
+            print(mov)
+    print(f"Saldo atual: R$ {saldo:.2f}")
 
     print("Depósito realizado com sucesso!")
 
