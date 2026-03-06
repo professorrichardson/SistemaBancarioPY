@@ -1,8 +1,8 @@
-# ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
-# ==========================================
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
@@ -15,7 +15,7 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
+    print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
     print("1 - Consultar Saldo")
     print("2 - Depositar")
     print("3 - Sacar")
@@ -39,10 +39,19 @@ def depositar():
     global extrato
 
     valor_str = input("Digite o valor para depósito: ")
+    valor_str = valor_str.replace(',','.')
 
     # TODO 1:
     # Validar se a entrada é numérica.
     # Caso não seja, exibir mensagem de erro e retornar.
+    if not valor_str.replace('.','1').isdigit():
+        print(VERMELHO+"Erro: Digite apenas numeros!"+RESET)
+        return      
+
+
+
+
+
 
     valor = float(valor_str)
 
