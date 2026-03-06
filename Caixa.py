@@ -44,18 +44,26 @@ def depositar():
     global saldo
     global extrato
 
-    valor_str = input("Digite o valor para depósito: ")
+    try:
+        valor_str = input("Digite o valor para depósito: ")
 
-    if valor_str == 0:
-        print("O caixa só aceita números positivos!")
-        return
-    
-    valor_str = float(valor_str)
 
-    if valor_str <= 0:
-        print(VERMELHO + "Erro: O valor deve ser maior que zero!" + RESET)
+        if valor_str == "0":
+            saldo+= valor_str
+            print("O caixa só aceita números positivos!")
+            return
+
+        valor_str = float(valor_str)
+
+        if valor_str <= 0:
+            print(VERMELHO + "Erro: O valor deve ser maior que zero!" + RESET)
+            return
+    except ValueError:
+        print(VERMELHO + "Erro: Aceitamos apenas números!" + RESET)
         return
-    
+
+       
+
 
     # TODO 1:
     # Validar se a entrada é numérica.
@@ -91,6 +99,21 @@ def sacar():
     global extrato
 
     valor_str = input("Digite o valor para saque: ")
+    
+    if valor_str > float(saldo):
+        saldo += valor_str
+        print("Saldo insuficiente para saque!")
+        return
+    elif valor_str > 1000:
+        print("O caixa não permite saque maior que R$ 1000.")
+        return
+    elif valor_str <= 0:
+        print("O caixa só aceita números positivos!")
+        return
+    else:
+        saldo -= valor_str
+        print("Saque realizado com sucesso!")
+        return
 
     # TODO 5:
     # Validar se a entrada é numérica.
