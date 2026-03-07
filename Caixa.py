@@ -18,8 +18,10 @@ RESET = "\033[0m"
 # ----------------------------
 saldo = 1000.0
 extrato = []
-senhaSecreta = 12345
-limite_diario = 2000.00
+senhaSecreta = 123456
+limite_diario = 0
+limite_diario_novo = 2000
+sobra_limite = limite_diario_novo
 
 
 # ----------------------------
@@ -77,7 +79,8 @@ def depositar():
   # Registrar a operação na lista extrato.
 
   extrato.append(f"\nDepósito: + {valor:.2f}")
-  print(VERDE+"\nDepósito realizado com sucesso!"+RESET)
+  print(AZUL+"\n==============================="+RESET)
+  print(VERDE+f"\nDepósito no valor de R${valor} realizado com sucesso!"+RESET)
 
 
 # ----------------------------
@@ -86,8 +89,9 @@ def depositar():
 def sacar():
    global saldo
    global extrato
+   global limite_diario_novo
+   global sobra_limite
    global limite_diario
-
   # TODO 5:
   # Validar se a entrada é numérica.
 
@@ -96,7 +100,10 @@ def sacar():
 
   # TODO 7:
   # Verificar se há saldo suficiente.
-   if limite_diario == 0:
+   if saldo ==0:
+       print(AMARELO+"\nNão há saldo disponível"+RESET)
+       main(tentativas)
+   if sobra_limite == 0:
        print(AMARELO+"\nSeu limite diário acabou :(. Para sacar novamente, altere o valor de saque diário ou volte outro dia."+RESET)
        main(tentativas)
    else:
@@ -108,9 +115,11 @@ def sacar():
                    print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
                elif valor>saldo:
                    print(VERMELHO+"Saldo insuficiente. Verifique seu saldo"+RESET)
-               elif (limite_diario-valor)<0:
+               elif valor>sobra_limite:
+                   print(VERMELHO+"O valor de saque reinvidicado excede o limite de saque diário. Tente sacar um valor menor"+RESET)
+               elif (sobra_limite)<0:
                    print(VERMELHO+"Valor de saque diário excedido"+RESET)
-                   print(AMARELO+f"Valor ainda disponível: {limite_diario:.2f}"+RESET)
+                   print(AMARELO+f"Valor ainda disponível: {sobra_limite:.2f}"+RESET)
                elif valor>0 and valor<=saldo:
                    print(VERDE+"\nValor válido"+RESET)
                    break
@@ -126,9 +135,11 @@ def sacar():
    if confirmacao_str =="s":
        extrato.append(f"\nSaque: - {valor:.2f}")
        saldo = saldo - valor
-       limite_diario = limite_diario - valor
+       sobra_limite = sobra_limite - valor
+       print(AZUL+"\n============================"+RESET)
        print(VERDE+"\nSaque realizado com sucesso!"+RESET)
-       print(VERDE+f"\nLimite de saque diário restante: {limite_diario:.2f}"+RESET)
+       print(AMARELO+f"\nLimite de saque diário restante: {sobra_limite:.2f}"+RESET)
+       print(AMARELO+f"\nSaldo disponível: {saldo:.2f}"+RESET)
       
    elif confirmacao_str=="n":
        print(VERDE+"Saque cancelado"+RESET)
@@ -191,28 +202,23 @@ def senha():
 def limite():
     global a
     global limite_diario
-    entrada = ""
-    print("\nPara alterar seu limite de saque diário, é necessário digitar um cpf válido")
+    global limite_diario_novo
+    global sobra_limite
+    entrada = "" 
+    print(AZUL+"\nPara alterar seu limite de saque diário, é necessário digitar um cpf válido"+RESET)
     while True:
         try:
             entrada = input("\nDigite o cpf: ")
             if len(entrada)<11:
-                print("\nO CPF deve conter 11 dígitos")
+                print(VERMELHO+"\nO CPF deve conter 11 dígitos"+RESET)
             else: break
-        
-                    
 
         except ValueError:
-            print("Erro")
+            print(VERMELHO+"Erro"+RESET)
 
     for n in entrada:
-        i = 0
-        if i > 12:
-            break
-        if n.isdigit():
-            i = i+1
-        else:
-            print("Não são aceitos caracteres no CPF")
+        if not n.isdigit():
+            print(VERMELHO+"Não são aceitos caracteres no CPF"+RESET)
             limite()
 
     lista1 = [int(n) for n in list(entrada)]
@@ -258,15 +264,30 @@ def limite():
 
 
     if lista_formatada == entrada_formatada:
-        print("Válido")
+        print(VERDE+"\nCPF Válido"+RESET)
         validez = 1
     else:
-        print("Inválido")
+        print(VERMELHO+"\nInválido"+RESET)
         main(tentativas)
         validez = 0
     if validez == 1:
-        limite_diario = int(input("\nDefina o novo limite diário: "))
-        print(f"Novo limite definido: {limite_diario}")
+        limite_diario = limite_diario_novo
+        while True:
+            try:
+                limite_diario_novo = int(input(AZUL+f"\nDefina o novo limite diário (atual = {limite_diario:.2f}): "+RESET))
+                limite_float = float(limite_diario_novo)
+                if limite_float<=0:
+                    print(VERMELHO+"O valor do depósito NÃO pode ser negativo ou zero"+RESET)
+                elif limite_float>0:
+                    print("\nValor válido")
+                    break
+            except ValueError:
+                print(VERMELHO+"Valor Inválido"+RESET)
+        
+        sobra_limite = (limite_diario_novo - limite_diario) + sobra_limite  
+        print(AZUL+"================================="+RESET)
+        print(VERDE+f"\nNovo limite definido: {limite_diario_novo:.2f}"+RESET)
+        print(VERDE+f"\nLimite de saque ainda disponível: {sobra_limite:.2f}"+RESET)
         main(tentativas)
 
 # ----------------------------
@@ -333,8 +354,6 @@ def main(tentativas):
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
 senha()
-
-# Entrada: 1234
 
 
 
