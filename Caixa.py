@@ -80,7 +80,7 @@ def depositar():
 
   extrato.append(f"\nDepósito: + {valor:.2f}")
   print(AZUL+"\n==============================="+RESET)
-  print(VERDE+f"\nDepósito no valor de R${valor} realizado com sucesso!"+RESET)
+  print(VERDE+f"\nDepósito no valor de R${valor:.2f} realizado com sucesso!"+RESET)
 
 
 # ----------------------------
@@ -115,12 +115,10 @@ def sacar():
                    print(VERMELHO+"O valor do saque NÃO pode ser negativo ou zero"+RESET)
                elif valor>saldo:
                    print(VERMELHO+"Saldo insuficiente. Verifique seu saldo"+RESET)
-               elif valor>sobra_limite:
-                   print(VERMELHO+"O valor de saque reinvidicado excede o limite de saque diário. Tente sacar um valor menor"+RESET)
-               elif (sobra_limite)<0:
+               elif sobra_limite<valor:
                    print(VERMELHO+"Valor de saque diário excedido"+RESET)
                    print(AMARELO+f"Valor ainda disponível: {sobra_limite:.2f}"+RESET)
-               elif valor>0 and valor<=saldo:
+               elif valor>0 and valor<=saldo and valor<=sobra_limite:
                    print(VERDE+"\nValor válido"+RESET)
                    break
            except ValueError:
@@ -142,8 +140,10 @@ def sacar():
        print(AMARELO+f"\nSaldo disponível: {saldo:.2f}"+RESET)
       
    elif confirmacao_str=="n":
-       print(VERDE+"Saque cancelado"+RESET)
-      
+       print(AZUL+"\n==============="+RESET)
+       print(VERDE+"\nSaque cancelado"+RESET)
+       print(AZUL+"\n==============="+RESET)
+
 
 # ----------------------------
 # FUNÇÃO: ver_extrato
@@ -158,7 +158,7 @@ def ver_extrato():
  
    if not extrato:
       print(AZUL+"\n====== EXTRATO ======\n"+RESET)
-      print(AMARELO+"Não foi realizado nenhum depósito ou saque até )o momento"+RESET)
+      print(AMARELO+"Não foi realizado nenhum depósito ou saque até o momento :)"+RESET)
 
 
   # TODO 11:
@@ -182,21 +182,25 @@ def senha():
        try:
            if  tentativas == 3:
                print(VERMELHO+"\nAPENAS 1 TENTATIVA RESTANTE"+RESET)
-               senha_str = input(VERDE+"Digite a Senha: "+RESET)
-               senha = int(senha_str)
+               senha = str(input(VERDE+"Digite a Senha: "+RESET))
            else:
-               senha_str = input(VERDE+"\nDigite a Senha(6 dígitos): "+RESET)
-               senha = int(senha_str)
-           if senha != senhaSecreta:
-               print(VERMELHO+"Senha incorreta! "+ AZUL+"Tente novamente"+RESET)
-               print(AMARELO+f"Tentativas restantes: {total_tentativas-tentativas}"+RESET)
-               tentativas = tentativas +1
-           elif senha == senhaSecreta:
-               print("Senha correta! Iniciando sistema!")
+               senha = str(input(VERDE+"\nDigite a Senha(6 dígitos): "+RESET))
+           senha_int = int(senha)
+           if senha_int != senhaSecreta:
+               if len(senha)<6:
+                   print("\nA senha deve conter 6 dígitos numéricos")
+               else:
+                   print(VERMELHO+"Senha incorreta! "+ AZUL+"Tente novamente"+RESET)
+                   print(AMARELO+f"Tentativas restantes: {total_tentativas-tentativas}"+RESET)
+                   tentativas = tentativas +1
+               
+           elif senha_int == senhaSecreta:
+               print(AZUL+"\n=================================="+RESET)
+               print(VERDE+"\nSenha correta! Iniciando sistema!"+RESET)
                break
           
        except ValueError:
-           print("Erro")
+           print(VERMELHO+"\nNão são válidos espaços em branco e letras!"+RESET)
    main(tentativas)
 
 def limite():
