@@ -76,30 +76,47 @@ def depositar():
 # FUNÇÃO: sacar
 # ----------------------------
 def sacar():
-    global saldo
-    global extrato
+   global saldo
+   global extrato
 
-    valor_str = input("Digite o valor para saque: ")
 
-    # TODO 5:
-    # Validar se a entrada é numérica.
+   valor_str = input("Digite o valor para saque: ")
 
-    valor = float(valor_str)
 
-    # TODO 6:
-    # Verificar se o valor é positivo.
+   # TODO 5:
+   try:
+       numero = float(valor_str)
+   except ValueError:
+       print("valor invalido! Por favor, digite um numero.")
+       return
 
-    # TODO 7:
-    # Verificar se há saldo suficiente.
 
-    # TODO 8:
-    # Atualizar saldo.
+   valor = float(valor_str)
 
-    # TODO 9:
-    # Registrar operação no extrato.
 
-    print("Saque realizado com sucesso!")
+   # TODO 6:
+   if valor <= 0:
+       print("Valor invalido! O valor deve ser positivo.")
+       return
 
+
+   # TODO 7:
+   if valor > saldo:
+       print("Saldo insuficiene!")
+       return
+
+
+   # TODO 8:
+   saldo -= valor
+
+
+   # TODO 9:
+   extrato.append(f"saque: R$ {valor:.2f}")
+
+
+
+
+   print("Saque realizado com sucesso!")
 
 # ----------------------------
 # FUNÇÃO: ver_extrato
