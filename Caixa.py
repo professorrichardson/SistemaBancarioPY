@@ -62,11 +62,6 @@ def depositar():
 
     else:
         print("Depósito realizado com sucesso!")
-        
-
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
 
     # TODO 3:
     # Atualizar o saldo.
@@ -82,15 +77,18 @@ def sacar():
     global saldo
     global extrato
 
+    
     valor_str = input("Digite o valor para saque: ")
+    if not valor_str.isdigit():
+        print (VERMELHO+" Digite apenas números positivos! "+ RESET)
+        
+    valor = int(valor_str)
 
-    # TODO 5:
-    # Validar se a entrada é numérica.
+    if valor > saldo:
+        print (VERMELHO+" Você não possui saldo sufuciente! "+ RESET)
+    else:
+        print(VERDE+"Saque realizado com sucesso!"+RESET)
 
-    valor = float(valor_str)
-
-    # TODO 6:
-    # Verificar se o valor é positivo.
 
     # TODO 7:
     # Verificar se há saldo suficiente.
@@ -101,7 +99,6 @@ def sacar():
     # TODO 9:
     # Registrar operação no extrato.
 
-    print("Saque realizado com sucesso!")
 
 
 # ----------------------------
