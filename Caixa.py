@@ -122,16 +122,21 @@ def sacar():
 # FUNÇÃO: ver_extrato
 # ----------------------------
 def ver_extrato():
-    global extrato
+   global extrato
 
-    print("\n====== EXTRATO ======")
 
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
+   print("\n====== EXTRATO ======")
 
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
+
+   # TODO 10:
+   if not extrato:
+       print("Não há movimentação para exibir")
+       return
+
+
+   # TODO 11:
+   for operacao in extrato:
+       print(operacao)
 
 
 # ----------------------------
