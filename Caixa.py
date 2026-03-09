@@ -1,8 +1,8 @@
-# ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
-# ==========================================
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
@@ -15,7 +15,7 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
+    print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
     print("1 - Consultar Saldo")
     print("2 - Depositar")
     print("3 - Sacar")
@@ -37,18 +37,33 @@ def consultar_saldo():
 def depositar():
     global saldo
     global extrato
+    while True:
+        try:
 
-    valor_str = input("Digite o valor para depósito: ")
+            valor_str = float(input("Digite o valor para depósito: "))
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
+            # TODO 1:
+            # Validar se a entrada é numérica.
+            # Caso não seja, exibir mensagem de erro e retornar.
+            
+            if valor_str<=0:
+                print(VERMELHO+"Erro: Digite apenas numeros positivos!"+RESET)
 
-    valor = float(valor_str)
-
+            else:
+                break
+        except ValueError:
+            print(VERMELHO+"Erro: Digite apenas números!"+RESET)
     # TODO 2:
     # Verificar se o valor é positivo.
     # Caso não seja, exibir mensagem de erro e retornar.
+    
+
+
+    valor = float(valor_str)
+
+    saldo += valor
+    extrato.append(f"Depósito: + R${valor:.2f}")
+    print(f"Depósito de R${valor:.2f} foi realizado com sucesso!")
 
     # TODO 3:
     # Atualizar o saldo.
@@ -95,6 +110,8 @@ def ver_extrato():
     global extrato
 
     print("\n====== EXTRATO ======")
+    for n in (extrato):
+        print("\n",n)
 
     # TODO 10:
     # Verificar se a lista está vazia.
