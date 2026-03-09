@@ -143,34 +143,43 @@ def ver_extrato():
 # FUNÇÃO PRINCIPAL
 # ----------------------------
 def main():
+   while True:
+       exibir_menu()
+       opcao = input("Escolha uma opção: ")
 
-    while True:
-        exibir_menu()
-        opcao = input("Escolha uma opção: ")
 
-        # TODO 12:
-        # Validar se a opção é numérica.
+       # TODO 12:
+       if not opcao.isdigit():
+           print("Opção invalida. Porfavor tente novamente.")
 
-        opcao = int(opcao)
 
-        if opcao == 1:
-            consultar_saldo()
+       opcao = int(opcao)
 
-        elif opcao == 2:
-            depositar()
 
-        elif opcao == 3:
-            sacar()
+       if opcao == 1:
+           consultar_saldo()
 
-        elif opcao == 4:
-            ver_extrato()
 
-        elif opcao == 5:
-            print("Encerrando sistema...")
-            break
+       elif opcao == 2:
+           depositar()
 
-        else:
-            print("Opção inválida!")
+
+       elif opcao == 3:
+           sacar()
+
+
+       elif opcao == 4:
+           ver_extrato()
+
+
+       elif opcao == 5:
+           print("Encerrando sistema...")
+           break
+
+
+       else:
+           print("Opção inválida!")
+
 
 
 # ----------------------------
