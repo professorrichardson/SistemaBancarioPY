@@ -113,7 +113,7 @@ def ver_extrato():
         print(operacao)
 
 # ----------------------------
-# FUNÇÃO PRINCIPAL
+# FUNÇÃO PRINCIPAL oi
 # ----------------------------
 def main():
     while True:
