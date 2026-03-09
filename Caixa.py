@@ -1,8 +1,9 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome: Nicolas, guilherme, pedro
+# Turma: 3° tec
 # ==========================================
+
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
@@ -15,27 +16,25 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
+   print("\n====== CAIXA ELETRÔNICO ======")
+   print("1 - Consultar Saldo")
+   print("2 - Depositar")
+   print("3 - Sacar")
+   print("4 - Ver Extrato")
+   print("5 - Sair")
 
 
 # ----------------------------
 # FUNÇÃO: consultar_saldo
 # ----------------------------
 def consultar_saldo():
-    global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
-
+   global saldo
+   print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 
 # ----------------------------
 # FUNÇÃO: depositar
 # ----------------------------
-    
 def depositar():
    global saldo
    global extrato
@@ -68,8 +67,6 @@ def depositar():
    # TODO 4:
    extrato.append(f"deposito: R$ {valor:.2f}")
    print("Depósito realizado com sucesso!")
-
-
 
 
 # ----------------------------
@@ -117,6 +114,7 @@ def sacar():
 
 
    print("Saque realizado com sucesso!")
+
 
 # ----------------------------
 # FUNÇÃO: ver_extrato
@@ -179,7 +177,6 @@ def main():
 
        else:
            print("Opção inválida!")
-
 
 
 # ----------------------------
