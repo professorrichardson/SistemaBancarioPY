@@ -1,8 +1,8 @@
-# ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
-# ==========================================
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
@@ -40,13 +40,14 @@ def depositar():
     while True:
         try:
 
-    valor_str = input("Digite o valor para depósito: ")
+            valor_str = float(input("Digite o valor para depósito: "))
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    valor = float(valor_str)
+            # TODO 1:
+            # Validar se a entrada é numérica.
+            # Caso não seja, exibir mensagem de erro e retornar.
+            
+            if valor_str<=0:
+                print(VERMELHO+"Erro: Digite apenas numeros positivos!"+RESET)
 
             else:
                 break
