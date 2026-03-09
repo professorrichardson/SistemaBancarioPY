@@ -31,32 +31,25 @@ def consultar_saldo():
     print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 
+
 # ----------------------------
 # FUNÇÃO: depositar
 # ----------------------------
+    
 def depositar():
     global saldo
     global extrato
 
-    valor_str = input("Digite o valor para depósito: ")
-
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    valor = float(valor_str)
-
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    # TODO 3:
-    # Atualizar o saldo.
-
-    # TODO 4:
-    # Registrar a operação na lista extrato.
-
-    print("Depósito realizado com sucesso!")
+    try:
+        valor = float(input("Digite o valor do depósito: R$ "))
+        if valor > 0:
+            saldo += valor
+            valor_formatado = f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+            print(f"Depósito de R$ {valor_formatado} realizado com sucesso!")
+        else:
+            print("O valor do depósito deve ser positivo.")
+    except ValueError:
+        print("Por favor, digite um valor numérico válido.")
 
 
 # ----------------------------
