@@ -129,20 +129,27 @@ def sacar():
 
   # TODO 9:
   # Registrar operação no extrato.
-    confirmacao_str = input(VERDE+f"\nConfirma o saque no valor de {valor:.2f}?(digite 's' para SIM/digite 'n' para NÃO): "+RESET).lower()
-    if confirmacao_str =="s":
-        extrato.append(f"\nSaque: - {valor:.2f}")
-        saldo = saldo - valor
-        sobra_limite = sobra_limite - valor
-        print(AZUL+"\n============================"+RESET)
-        print(VERDE+"\nSaque realizado com sucesso!"+RESET)
-        print(AMARELO+f"\nLimite de saque diário restante: {sobra_limite:.2f}"+RESET)
-        print(AMARELO+f"\nSaldo disponível: {saldo:.2f}"+RESET)
-      
-    elif confirmacao_str=="n":
-        print(AZUL+"\n==============="+RESET)
-        print(VERDE+"\nSaque cancelado"+RESET)
-        print(AZUL+"\n==============="+RESET)
+    
+    while True:
+        confirmacao_str = input(VERDE+f"\nConfirma o saque no valor de {valor:.2f}?(digite 's' para SIM/digite 'n' para NÃO): "+RESET).lower()
+        if confirmacao_str =="s":
+            extrato.append(f"\nSaque: - {valor:.2f}")
+            saldo = saldo - valor
+            sobra_limite = sobra_limite - valor
+            print(AZUL+"\n============================"+RESET)
+            print(VERDE+"\nSaque realizado com sucesso!"+RESET)
+            print(AMARELO+f"\nLimite de saque diário restante: {sobra_limite:.2f}"+RESET)
+            print(AMARELO+f"\nSaldo disponível: {saldo:.2f}"+RESET)
+            break
+        
+        elif confirmacao_str=="n":
+            print(AZUL+"\n==============="+RESET)
+            print(VERDE+"\nSaque cancelado"+RESET)
+            print(AZUL+"\n==============="+RESET)
+            break
+
+        else:
+            print(AZUL+"\nDigite 's' ou 'n'"+RESET)
 
 
 # ----------------------------
