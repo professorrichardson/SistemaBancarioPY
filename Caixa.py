@@ -80,7 +80,7 @@ def sacar():
     # Verificar se há saldo suficiente.
 
     # TODO 8:
-    # Atualizar saldo.
+    # Atualizar saldo.    
 
     # TODO 9:
     # Registrar operação no extrato.
