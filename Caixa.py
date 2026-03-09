@@ -59,6 +59,7 @@ def depositar():
             print(VERMELHO + "Erro: O valor deve ser maior que zero!" + RESET)
             return
     except ValueError:
+        
         print(VERMELHO + "Erro: Aceitamos apenas números!" + RESET)
         return
 
@@ -87,9 +88,9 @@ def depositar():
 
     # TODO 4:
     # Registrar a operação na lista extrato.
-
+    extrato.append("Depósito: +R$ {:.2f}".format(valor))
     print("Depósito realizado com sucesso!")
-
+    saldo = saldo + valor 
 
 # ----------------------------
 # FUNÇÃO: sacar
@@ -99,20 +100,26 @@ def sacar():
     global extrato
 
     valor_str = input("Digite o valor para saque: ")
-    
-    if valor_str > float(saldo):
-        saldo += valor_str
-        print("Saldo insuficiente para saque!")
+
+    try:
+        valor = float(valor_str)  # Converte para float
+    except ValueError:
+        print(VERMELHO+"Erro: Digite um valor numérico válido!"+RESET)
         return
-    elif valor_str > 1000:
-        print("O caixa não permite saque maior que R$ 1000.")
+
+    if valor > saldo:
+        print(VERMELHO+"Saldo insuficiente para saque!"+RESET)
         return
-    elif valor_str <= 0:
-        print("O caixa só aceita números positivos!")
+    elif valor > 1000:
+        print(VERMELHO+"O caixa não permite saque maior que R$ 1000."+RESET)
+        return
+    elif valor <= 0:
+        print(VERMELHO+"O caixa só aceita números positivos!"+RESET)
         return
     else:
-        saldo -= valor_str
-        print("Saque realizado com sucesso!")
+        saldo -= valor
+        extrato.append(f"Saque: -R$ {valor:.2f}")
+        print(VERDE+"Saque realizado com sucesso!"+RESET)
         return
 
     # TODO 5:
@@ -143,6 +150,10 @@ def ver_extrato():
     global extrato
 
     print("\n====== EXTRATO ======")
+    print (extrato)
+    for operacao in extrato:
+        print(operacao)
+   
 
     # TODO 10:
     # Verificar se a lista está vazia.
@@ -179,11 +190,11 @@ def main():
             ver_extrato()
 
         elif opcao == 5:
-            print("Encerrando sistema...")
+            print(AZUL+"Encerrando sistema..."+RESET)
             break
 
         else:
-            print("Opção inválida!")
+            print(VERMELHO+"Opção inválida!"+RESET)
 
 
 # ----------------------------
