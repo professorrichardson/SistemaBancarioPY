@@ -1,144 +1,65 @@
-# ==========================================
-# SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
-# ==========================================
-
-# ----------------------------
-# VARIÁVEIS GLOBAIS
-# ----------------------------
-saldo = 1000.0
+# Lista para armazenar o extrato e saldo inicial
 extrato = []
+saldo = 1000.0
 
+def exibir_extrato(saldo_atual):
+    print("\n=== EXTRATO ===")
+    if not extrato:
+        print(✅ Depósito realizado com sucesso!)
+    else:
+        for transacao in extrato:
+            print(transacao)
+    print(f"Saldo atual: R$ {saldo_atual:.2f}")
 
-# ----------------------------
-# FUNÇÃO: exibir_menu
-# ----------------------------
-def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
-
-
-# ----------------------------
-# FUNÇÃO: consultar_saldo
-# ----------------------------
-def consultar_saldo():
-    global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
-
-
-# ----------------------------
-# FUNÇÃO: depositar
-# ----------------------------
-def depositar():
-    global saldo
-    global extrato
-
-    valor_str = input("Digite o valor para depósito: ")
-
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    valor = float(valor_str)
-
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
-
-    # TODO 3:
-    # Atualizar o saldo.
-
-    # TODO 4:
-    # Registrar a operação na lista extrato.
-
-    print("Depósito realizado com sucesso!")
-
-
-# ----------------------------
-# FUNÇÃO: sacar
-# ----------------------------
-def sacar():
-    global saldo
-    global extrato
-
-    valor_str = input("Digite o valor para saque: ")
-
-    # TODO 5:
-    # Validar se a entrada é numérica.
-
-    valor = float(valor_str)
-
-    # TODO 6:
-    # Verificar se o valor é positivo.
-
-    # TODO 7:
-    # Verificar se há saldo suficiente.
-
-    # TODO 8:
-    # Atualizar saldo.
-
-    # TODO 9:
-    # Registrar operação no extrato.
-
-    print("Saque realizado com sucesso!")
-
-
-# ----------------------------
-# FUNÇÃO: ver_extrato
-# ----------------------------
-def ver_extrato():
-    global extrato
-
-    print("\n====== EXTRATO ======")
-
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
-
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
-
-
-# ----------------------------
-# FUNÇÃO PRINCIPAL
-# ----------------------------
-def main():
-
-    while True:
-        exibir_menu()
-        opcao = input("Escolha uma opção: ")
-
-        # TODO 12:
-        # Validar se a opção é numérica.
-
-        opcao = int(opcao)
-
-        if opcao == 1:
-            consultar_saldo()
-
-        elif opcao == 2:
-            depositar()
-
-        elif opcao == 3:
-            sacar()
-
-        elif opcao == 4:
-            ver_extrato()
-
-        elif opcao == 5:
-            print("Encerrando sistema...")
-            break
-
+def depositar(saldo_atual):
+    try:
+        valor = float(input("Digite o valor do depósito: R$ "))
+        if valor > 0:
+            saldo_atual += valor
+            extrato.append(f"Depósito: + R$ {valor:.2f}")
+            print("✅ Depósito realizado com sucesso!")
         else:
-            print("Opção inválida!")
+            print("❌ Erro: O valor deve ser positivo.")
+    except ValueError:
+        print("⚠️ Erro: Entrada inválida. Digite apenas números.")
+    return saldo_atual
 
+def sacar(saldo_atual):
+    try:
+        valor = float(input("Digite o valor do saque: R$ "))
+        if valor <= 0:
+            print("❌ Erro: O valor deve ser positivo.")
+        elif valor > saldo_atual:
+            print("❌ Erro: Saldo insuficiente.")
+        else:
+            saldo_atual -= valor
+            extrato.append(f"Saque: - R$ {valor:.2f}")
+            print(✅ Saque realizado com sucesso!)
+    except ValueError:
+        print("⚠️ Erro: Entrada inválida.")
+    return saldo_atual
 
-# ----------------------------
-# EXECUÇÃO DO SISTEMA
-# ----------------------------
-main()
+# Menu Principal
+while True:
+    print("\n--- 🏦 CAIXA ELETRÔNICO ---")
+    print(1 > Ver meu saldo)
+    print("2 – Depositar")
+    print("3 – Sacar")
+    print("4 – Ver extrato")
+    print("5 – Sair")
+    
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == '1':
+        print(f"\n💰 Seu saldo atual é: R$ {saldo:.2f}")
+    elif opcao == '2':
+        saldo = depositar(saldo)
+    elif opcao == '3':
+        saldo = sacar(saldo)
+    elif opcao == '4':
+        exibir_extrato(saldo)
+    elif opcao == '5':
+        print("\nSaindo... Obrigado por usar o nosso banco! 👋")
+        break
+    else:
+        print("\n⚠️ Opção inválida!")
