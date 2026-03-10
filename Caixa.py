@@ -1,10 +1,8 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-<<<<<<< HEAD
+
 # Nome: matheus
-=======
-# Nome: Matheus
->>>>>>> abb395a8af5f96e687df1ea5163a11197ff2cd0a
+
 # Turma:
 # ==========================================
 
