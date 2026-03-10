@@ -10,6 +10,7 @@ RESET = "\033[0m"
 saldo = 1000.0
 extrato = []
 senha_secreta = 200909
+limite_diario = 3
 
 def senha():
     while True:
@@ -195,4 +196,5 @@ def main():
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
+
 senha()
