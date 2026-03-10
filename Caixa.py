@@ -63,6 +63,8 @@ def depositar():
     else:
         print("Depósito realizado com sucesso!")
 
+    extrato = extrato + valor_str
+
     # TODO 3:
     # Atualizar o saldo.
 
@@ -90,9 +92,7 @@ def sacar():
     except ValueError:
         print ("Digite apenas números inteiros.")
 
-
-    # TODO 7:
-    # Verificar se há saldo suficiente.
+    extrato = extrato + valor
 
     # TODO 8:
     # Atualizar saldo.
@@ -109,6 +109,12 @@ def ver_extrato():
     global extrato
 
     print("\n====== EXTRATO ======")
+
+    if not extrato:
+        print("Sem movimentações")
+
+
+    
 
     # TODO 10:
     # Verificar se a lista está vazia.
