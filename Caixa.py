@@ -22,7 +22,7 @@ senhaSecreta = 123456
 limite_diario = 0
 limite_diario_novo = 2000
 sobra_limite = limite_diario_novo
-
+opcao = 0
 
 # ----------------------------
 # FUNÇÃO: exibir_menu
@@ -372,8 +372,16 @@ def main(tentativas):
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
-senha()
 
+def inicia():
+    global opcao
+
+    if opcao==0:
+        senha()
+    else:
+        print
+        
+inicia()
 
 
 
