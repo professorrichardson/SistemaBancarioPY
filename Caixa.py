@@ -9,9 +9,19 @@ RESET = "\033[0m"
 # ----------------------------
 saldo = 1000.0
 extrato = []
-senha_secreta: 200909
+senha_secreta = 200909
 
-
+def senha():
+    while True:
+        try:
+            senha = int(input(AMARELO+"Digite a sua senha: "+RESET))
+            if senha == senha_secreta:
+                print(VERDE+"Senha correta!"+RESET)
+                main()
+            elif senha!=senha_secreta:
+                print(VERMELHO+" Senha incorreta "+RESET)
+        except ValueError:
+            print(VERMELHO+"Erro"+RESET)
 
 # ----------------------------
 # FUNÇÃO: exibir_menu
@@ -188,4 +198,4 @@ def main():
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
-main()
+senha()
