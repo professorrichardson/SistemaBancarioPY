@@ -9,6 +9,8 @@ RESET = "\033[0m"
 # ----------------------------
 saldo = 1000.0
 extrato = []
+senha_secreta: 200909
+
 
 
 # ----------------------------
@@ -81,12 +83,34 @@ def sacar():
     global saldo
     global extrato
 
-    valor_str = input("Digite o valor para saque: ")
+    while True:
+        try:
+
+            valor_str = float(input("Digite o valor para sacar: "))
+
+            # TODO 1:
+            # Validar se a entrada é numérica.
+            # Caso não seja, exibir mensagem de erro e retornar.
+            
+            if valor_str<=0:
+                print(VERMELHO+"Erro: Digite apenas numeros positivos!"+RESET)
+
+            else:
+                break
+        except ValueError:
+            print(VERMELHO+"Erro: Digite apenas números!"+RESET)
 
     # TODO 5:
     # Validar se a entrada é numérica.
 
     valor = float(valor_str)
+
+
+    saldo -= valor
+    extrato.append(f"Saque: - R${valor:.2f}")
+    print(f"Saque de R${valor:.2f} foi realizado com sucesso!")
+
+    print("Saque realizado com sucesso!")
 
     # TODO 6:
     # Verificar se o valor é positivo.
