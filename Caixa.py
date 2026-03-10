@@ -9,6 +9,7 @@ RESET = "\033[0m"
 # ----------------------------
 saldo = 1000.0
 extrato = []
+opcao = 0
 senha_secreta = 200909
 limite_diario = 3
 
@@ -196,5 +197,11 @@ def main():
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
+def inicial():
+    global opcao
 
-senha()
+    if opcao == 0:
+        senha()
+    else:
+        print
+inicial()
