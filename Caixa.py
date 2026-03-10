@@ -76,18 +76,19 @@ def depositar():
 def sacar():
     global saldo
     global extrato
-
-    
-    valor_str = input("Digite o valor para saque: ")
-    if not valor_str.isdigit():
-        print (VERMELHO+" Digite apenas números positivos! "+ RESET)
-        
-    valor = int(valor_str)
-
-    if valor > saldo:
-        print (VERMELHO+" Você não possui saldo sufuciente! "+ RESET)
-    else:
-        print(VERDE+"Saque realizado com sucesso!"+RESET)
+ 
+    try:
+        valor = int(input("Digite o valor do saque:"))
+        if valor <=0:
+            print ("O saque deve ser maior que zero.")
+       
+        elif valor > saldo:
+            print("Você não possui saldo suficiente.")
+          
+        else:
+            print ("Saque efetuado.") 
+    except ValueError:
+        print ("Digite apenas números inteiros.")
 
 
     # TODO 7:
