@@ -80,25 +80,22 @@ def depositar():
     print("Saque realizado com sucesso!")
 
 
-# ----------------------------
-# FUNÇÃO: ver_extrato
-# ----------------------------
 def ver_extrato():
     global extrato
+    global saldo
 
     print("\n====== EXTRATO ======")
-
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
-
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
-
-
-# ----------------------------
-# FUNÇÃO PRINCIPAL
-# ----------------------------
+    
+    # TODO 10: Verificar se a lista está vazia
+    if not extrato:
+        print("Não foram realizadas movimentações.")
+    else:
+        # TODO 11: Percorrer a lista e exibir
+        for operacao in extrato:
+            print(operacao)
+    
+    print(f"\nSaldo atual: R$ {saldo:.2f}")
+    print("======================")
 def main():
 
     while True:
