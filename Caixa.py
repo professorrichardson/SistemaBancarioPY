@@ -66,9 +66,7 @@ def depositar():
        
 
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
+   
     valor = float(valor_str)
 
     if valor <= 0:
@@ -79,15 +77,7 @@ def depositar():
 
     valor = float(valor)
 
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
 
-    # TODO 3:
-    # Atualizar o saldo.
-
-    # TODO 4:
-    # Registrar a operação na lista extrato.
     extrato.append("Depósito: +R$ {:.2f}".format(valor))
     print("Depósito realizado com sucesso!")
     saldo = saldo + valor 
@@ -122,22 +112,10 @@ def sacar():
         print(VERDE+"Saque realizado com sucesso!"+RESET)
         return
 
-    # TODO 5:
-    # Validar se a entrada é numérica.
+   
 
     valor = float(valor_str)
 
-    # TODO 6:
-    # Verificar se o valor é positivo.
-
-    # TODO 7:
-    # Verificar se há saldo suficiente.
-
-    # TODO 8:
-    # Atualizar saldo.
-
-    # TODO 9:
-    # Registrar operação no extrato.
 
     print("Saque realizado com sucesso!")
 
@@ -146,22 +124,17 @@ def sacar():
 # FUNÇÃO: ver_extrato
 # ----------------------------
 def ver_extrato():
-    global saldo4
+    global saldo
     global extrato
 
     print("\n====== EXTRATO ======")
-    print (extrato)
-    for operacao in extrato:
-        print(operacao)
-   
+    if len (extrato) == 0:
+       print (VERMELHO+"Nenhuma operação realizada"+RESET)
 
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
-
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
-
+    else:
+      for operacao in extrato:
+          print(operacao)
+    print(f"\nSaldo atual: R$ {saldo:.2f}")
 
 # ----------------------------
 # FUNÇÃO PRINCIPAL
@@ -172,8 +145,6 @@ def main():
         exibir_menu()
         opcao = input(AMARELO+"Escolha uma opção: "+RESET)
 
-        # TODO 12:
-        # Validar se a opção é numérica.
 
         opcao = int(opcao)
 
