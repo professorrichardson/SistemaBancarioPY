@@ -1,8 +1,9 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome: Eduarda de Paula Luciano
+# Nome: Eduarda Luciano
 # Turma: 3ºTec
 # ==========================================
+
 
 #Cores no terminal PY
 VERMELHO = "\033[31m"
@@ -11,108 +12,122 @@ AMARELO = "\033[033m"
 AZUL = "\033[034m"
 RESET = "\033[0m"
 
-print("==========================================")
-print("======SIMULADOR DE CAIXA ELETRÔNICO=======")
-print("==========================================")
+
+print(AZUL+"=========================================="+RESET)
+print(AZUL+"======SIMULADOR DE CAIXA ELETRÔNICO======="+RESET)
+print(AZUL+"=========================================="+RESET)
+
+
 
 # ----------------------------
 # VARIÁVEIS GLOBAIS
 # ----------------------------
 saldo = 1000.0
 extrato = []
+deposito = []
 
 
 # ----------------------------
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
+   print(AZUL+"\n====== CAIXA ELETRÔNICO ======"+RESET)
+   print("1 - Consultar Saldo")
+   print("2 - Depositar")
+   print("3 - Sacar")
+   print("4 - Ver Extrato")
+   print("5 - Sair")
 
 
 # ----------------------------
 # FUNÇÃO: consultar_saldo
 # ----------------------------
+
+
 def consultar_saldo():
-    global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
+   global saldo
+   print(VERDE+ f"\nSaldo atual: R$ {saldo:.2f}"+RESET)
 
 
 # ----------------------------
 # FUNÇÃO: depositar
 # ----------------------------
 def depositar():
-    global saldo
-    global extrato
+   global saldo
+   global extrato
 
-    valor_str = input("Digite o valor para depósito: ")
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
+   valor_str = input("Digite o valor para depósito: ")
+   if not valor_str.isdigit():
+       print (VERMELHO+" Digite apenas números positivos! "+ RESET)
+      
 
-    valor = float(valor_str)
 
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
+   else:
+       print(VERDE+"Depósito realizado com sucesso!"+RESET)
 
-    # TODO 3:
-    # Atualizar o saldo.
 
-    # TODO 4:
-    # Registrar a operação na lista extrato.
+   # TODO 3:
+   # Atualizar o saldo.
 
-    print("Depósito realizado com sucesso!")
 
+   # TODO 4:
+   # Registrar a operação na lista extrato.
 
 # ----------------------------
 # FUNÇÃO: sacar
 # ----------------------------
 def sacar():
-    global saldo
-    global extrato
+   global saldo
+   global extrato
 
-    valor_str = input("Digite o valor para saque: ")
 
-    # TODO 5:
-    # Validar se a entrada é numérica.
+  
+   valor_str = input("Digite o valor para saque: ")
+   if not valor_str.isdigit():
+       print (VERMELHO+" Digite apenas números positivos! "+ RESET)
+      
+   valor = int(valor_str)
 
-    valor = float(valor_str)
 
-    # TODO 6:
-    # Verificar se o valor é positivo.
+   if valor > saldo:
+       print (VERMELHO+" Você não possui saldo sufuciente! "+ RESET)
+   else:
+       print(VERDE+"Saque realizado com sucesso!"+RESET)
 
-    # TODO 7:
-    # Verificar se há saldo suficiente.
 
-    # TODO 8:
-    # Atualizar saldo.
 
-    # TODO 9:
-    # Registrar operação no extrato.
 
-    print("Saque realizado com sucesso!")
+   # TODO 7:
+   # Verificar se há saldo suficiente.
 
+
+   # TODO 8:
+   # Atualizar saldo.
+
+
+   # TODO 9:
+   # Registrar operação no extrato.
 
 # ----------------------------
 # FUNÇÃO: ver_extrato
 # ----------------------------
 def ver_extrato():
-    global extrato
+   global extrato
 
-    print("\n====== EXTRATO ======")
 
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
+   print(VERDE+"\n====== EXTRATO ======"+RESET)
 
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
+
+   # TODO 10:
+   # Verificar se a lista está vazia.
+   # Se estiver, informar que não há movimentações.
+
+
+   # TODO 11:
+   # Percorrer a lista e exibir as operações.
+
+
 
 
 # ----------------------------
@@ -120,39 +135,41 @@ def ver_extrato():
 # ----------------------------
 def main():
 
-     while True:
-      exibir_menu()
-      opcao_str = input("Escolha uma opção: ")
-      if not opcao_str.isdigit():
-          print(VERMELHO+"Opção inválida, digite apenas números!"+RESET)
-          continue
-     
+   while True:
+       exibir_menu()
+       opcao_str = input("Escolha uma opção: ")
+       if not opcao_str.isdigit():
+           print(VERMELHO+"Opção inválida, digite apenas números!"+RESET)
+           print("Apenas números maiores que zero")
+           continue
 
-      # TODO 12:
-      # Validar se a opção é numérica.
 
-      opcao = int(opcao_str)
-
-      if opcao == 1:
-          consultar_saldo()
-
-      elif opcao == 2:
+       opcao = int(opcao_str)
+       if opcao == 1:
+           consultar_saldo()
+      
+       elif opcao == 2:
           depositar()
-
-      elif opcao == 3:
+      
+       elif opcao == 3:
           sacar()
-
-      elif opcao == 4:
+      
+       elif opcao == 4:
           ver_extrato()
 
-      elif opcao == 5:
-          print("Encerrando sistema...")
-          break
 
-      else:
-          print(AMARELO+"Escolha apenas 1, 2, 3, 4 ou 5"+RESET)
-          
+       elif opcao == 5:
+          print(AZUL+"Encerrando sistema..."+RESET)
+          break
+       else:
+           print (VERMELHO+"Escolha apenas 1, 2, 3, 4 ou 5"+RESET)
+
+
+
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
 # ----------------------------
 main()
+
+
+
