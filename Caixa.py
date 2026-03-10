@@ -19,7 +19,7 @@ def senha():
                 print(VERDE+"Senha correta!"+RESET)
                 main()
             elif senha!=senha_secreta:
-                print(VERMELHO+" Senha incorreta "+RESET)
+                print(VERMELHO+" Senha incorreta: tente novamente "+RESET)
         except ValueError:
             print(VERMELHO+"Erro"+RESET)
 
@@ -40,7 +40,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
     global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
+    print(AZUL+f"\nSaldo atual: R$ {saldo:.2f}"+RESET)
 
 
 # ----------------------------
@@ -74,8 +74,8 @@ def depositar():
     valor = float(valor_str)
 
     saldo += valor
-    extrato.append(f"Depósito: + R${valor:.2f}")
-    print(f"Depósito de R${valor:.2f} foi realizado com sucesso!")
+    extrato.append(AZUL+f"Depósito: + R${valor:.2f}"+RESET)
+    print(VERDE+f"Depósito de R${valor:.2f} foi realizado com sucesso!"+RESET)
 
     # TODO 3:
     # Atualizar o saldo.
@@ -83,7 +83,6 @@ def depositar():
     # TODO 4:
     # Registrar a operação na lista extrato.
 
-    print("Depósito realizado com sucesso!")
 
 
 # ----------------------------
@@ -117,10 +116,9 @@ def sacar():
 
 
     saldo -= valor
-    extrato.append(f"Saque: - R${valor:.2f}")
-    print(f"Saque de R${valor:.2f} foi realizado com sucesso!")
+    extrato.append(AMARELO+f"Saque: - R${valor:.2f}"+RESET)
+    print(VERDE+f" Saque de R${valor:.2f} foi realizado com sucesso!"+RESET)
 
-    print("Saque realizado com sucesso!")
 
     # TODO 6:
     # Verificar se o valor é positivo.
@@ -134,7 +132,6 @@ def sacar():
     # TODO 9:
     # Registrar operação no extrato.
 
-    print("Saque realizado com sucesso!")
 
 
 # ----------------------------
@@ -168,7 +165,7 @@ def main():
 
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção: ")
+        opcao = input(AMARELO+"Escolha uma opção: "+RESET)
 
         # TODO 12:
         # Validar se a opção é numérica.
@@ -188,11 +185,11 @@ def main():
             ver_extrato()
 
         elif opcao == 5:
-            print("Encerrando sistema...")
+            print(AZUL+"Encerrando sistema..."+RESET)
             break
 
         else:
-            print("Opção inválida!")
+            print(VERMELHO+"Opção inválida!"+RESET)
 
 
 # ----------------------------
