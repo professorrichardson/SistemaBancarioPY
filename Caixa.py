@@ -133,10 +133,16 @@ def sacar():
 def ver_extrato():
     global extrato
 
-    print("\n====== EXTRATO ======")
-    for n in (extrato):
-        print("\n",n)
+   
+    
+    if not extrato:
+        print(AZUL+"\n ===== EXTRATO =====\n"+RESET)
+        print(VERDE+" Não foi realizado nenhum depósito ou saque "+RESET)
 
+    else:
+        print("\n====== EXTRATO ======")
+        for n in (extrato):
+            print("\n",n)
     # TODO 10:
     # Verificar se a lista está vazia.
     # Se estiver, informar que não há movimentações.
