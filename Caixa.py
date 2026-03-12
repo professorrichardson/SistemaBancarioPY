@@ -21,8 +21,7 @@ def exibir_menu():
     print("3 - Sacar")
     print("4 - Ver Extrato")
     print("5 - Sair")
-
-
+"Implementação da funcionalidade de saque com validação"
 # ----------------------------
 # FUNÇÃO: consultar_saldo
 # ----------------------------
@@ -60,14 +59,7 @@ def depositar():
 
 
 # ----------------------------
-# FUNÇÃO: sacar
-# ----------------------------
-def sacar():
-    global saldo
-    global extrato
-
-    valor_str = input("Digite o valor para saque: ")
-
+# FUNÇÃO: sacargit commit -m "Implementação da funcionalidade de saque com validação"
     # TODO 5:
     # Validar se a entrada é numérica.
 
@@ -88,25 +80,22 @@ def sacar():
     print("Saque realizado com sucesso!")
 
 
-# ----------------------------
-# FUNÇÃO: ver_extrato
-# ----------------------------
 def ver_extrato():
     global extrato
+    global saldo
 
     print("\n====== EXTRATO ======")
-
-    # TODO 10:
-    # Verificar se a lista está vazia.
-    # Se estiver, informar que não há movimentações.
-
-    # TODO 11:
-    # Percorrer a lista e exibir as operações.
-
-
-# ----------------------------
-# FUNÇÃO PRINCIPAL
-# ----------------------------
+    
+    # TODO 10: Verificar se a lista está vazia
+    if not extrato:
+        print("Não foram realizadas movimentações.")
+    else:
+        # TODO 11: Percorrer a lista e exibir
+        for operacao in extrato:
+            print(operacao)
+    
+    print(f"\nSaldo atual: R$ {saldo:.2f}")
+    print("======================")
 def main():
 
     while True:
@@ -139,6 +128,8 @@ def main():
 
 
 # ----------------------------
-# EXECUÇÃO DO SISTEMA
+# EXECUÇÃO DO SISTEMA 
 # ----------------------------
 main()
+
+
