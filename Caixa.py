@@ -1,3 +1,9 @@
+# ==========================================
+# SIMULADOR DE CAIXA ELETRÔNICO
+# Nome: Guilherme Marinho da Silva
+# Turma: 3º Técnico em Desenvolvimento de Sistemas
+# ==========================================
+
 VERMELHO = "\033[31m"
 VERDE = "\033[32m"
 AMARELO = "\033[33m"
@@ -12,10 +18,12 @@ extrato = []
 opcao = 0
 senha_secreta = 200909
 limite_diario = 3
+contagem_saques = 0
 
 def senha():
     while True:
         try:
+            print(AZUL+"\n ===== INFORME SUA SENHA ====="+RESET)
             senha = int(input(AMARELO+"Digite a sua senha: "+RESET))
             if senha == senha_secreta:
                 print(VERDE+"Senha correta!"+RESET)
@@ -91,36 +99,29 @@ def depositar():
 # FUNÇÃO: sacar
 # ----------------------------
 def sacar():
-    global saldo
-    global extrato
+    global saldo, extrato, contagem_saques, limite_diario
 
-    while True:
-        try:
+    if contagem_saques >= limite_diario:
+        print(VERMELHO + f"Erro: Você atingiu o seu limite de {limite_diario} saques hoje." + RESET)
+        return 
 
-            valor_str = float(input("Digite o valor para sacar: "))
-
-            # TODO 1:
-            # Validar se a entrada é numérica.
-            # Caso não seja, exibir mensagem de erro e retornar.
+    try:
+        valor = float(input("Digite o valor para sacar: "))
+        
+        
+        if valor <= 0:
+            print(VERMELHO + "Erro: O valor deve ser positivo!" + RESET)
+        elif valor > saldo:
+            print(VERMELHO + "Erro: Saldo insuficiente!" + RESET)
+        else:
+            saldo -= valor
+            extrato.append(AMARELO + f"Saque: - R${valor:.2f}" + RESET)
+            contagem_saques += 1
+        
+            print(VERDE + f"Saque realizado! Saques restantes: {limite_diario - contagem_saques}" + RESET)
             
-            if valor_str<=0:
-                print(VERMELHO+"Erro: Digite apenas numeros positivos!"+RESET)
-
-            else:
-                break
-        except ValueError:
-            print(VERMELHO+"Erro: Digite apenas números!"+RESET)
-
-    # TODO 5:
-    # Validar se a entrada é numérica.
-
-    valor = float(valor_str)
-
-
-    saldo -= valor
-    extrato.append(AMARELO+f"Saque: - R${valor:.2f}"+RESET)
-    print(VERDE+f" Saque de R${valor:.2f} foi realizado com sucesso!"+RESET)
-
+    except ValueError:
+        print(VERMELHO + "Erro: Digite apenas números válidos!" + RESET)
 
     # TODO 6:
     # Verificar se o valor é positivo.
@@ -169,6 +170,7 @@ def main():
         exibir_menu()
         opcao = input(AMARELO+"Escolha uma opção: "+RESET)
 
+
         # TODO 12:
         # Validar se a opção é numérica.
 
@@ -204,4 +206,5 @@ def inicial():
         senha()
     else:
         print
+
 inicial()
