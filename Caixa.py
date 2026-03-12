@@ -28,6 +28,7 @@ def senha():
             if senha == senha_secreta:
                 print(VERDE+"Senha correta!"+RESET)
                 main()
+                break
             elif senha!=senha_secreta:
                 print(VERMELHO+" Senha incorreta: tente novamente "+RESET)
         except ValueError:
