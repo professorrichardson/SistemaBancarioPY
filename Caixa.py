@@ -1,6 +1,6 @@
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome: Guilherme Marinho da Silva
+# Nome: Adryan Rafael Galvão de Campos
 # Turma: 3º Técnico em Desenvolvimento de Sistemas
 # ==========================================
 
