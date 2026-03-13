@@ -100,27 +100,35 @@ def depositar():
 # FUNÇÃO: sacar
 # ----------------------------
 def sacar():
+    
     global saldo, extrato, contagem_saques, limite_diario
 
     if contagem_saques >= limite_diario:
-        print(VERMELHO + f"Erro: Você atingiu o seu limite de {limite_diario} saques hoje." + RESET)
-        return 
+        print(VERMELHO + "Erro: Limite diário de saques atingido." + RESET)
+        return
 
     try:
         valor = float(input("Digite o valor para sacar: "))
-        
+
         
         if valor <= 0:
             print(VERMELHO + "Erro: O valor deve ser positivo!" + RESET)
         elif valor > saldo:
             print(VERMELHO + "Erro: Saldo insuficiente!" + RESET)
         else:
-            saldo -= valor
-            extrato.append(AMARELO + f"Saque: - R${valor:.2f}" + RESET)
-            contagem_saques += 1
-        
-            print(VERDE + f"Saque realizado! Saques restantes: {limite_diario - contagem_saques}" + RESET)
-            
+           
+            confirmacao = input(AMARELO + f"Confirma o saque de R${valor:.2f}? (s/n): " + RESET).lower()
+
+            if confirmacao == 's':
+                
+                saldo -= valor
+                contagem_saques += 1
+                extrato.append(AMARELO + f"Saque: - R${valor:.2f}" + RESET)
+                print(VERDE + "Saque realizado com sucesso!" + RESET)
+            else:
+                
+                print(VERMELHO + "Operação de saque cancelada." + RESET)
+
     except ValueError:
         print(VERMELHO + "Erro: Digite apenas números válidos!" + RESET)
 
