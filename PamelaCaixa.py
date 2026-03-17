@@ -1,3 +1,12 @@
+import random
+
+#Cores no Terminal PY
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
+
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
 # Nome: Pamela Raiane
@@ -10,17 +19,16 @@
 saldo = 1000.0
 extrato = []
 
-
 # ----------------------------
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
+    print(AZUL + "\n====== CAIXA ELETRÔNICO ======" + RESET)
+    print(AZUL + "1 - Consultar Saldo" + RESET)
+    print(AZUL + "2 - Depositar" + RESET)
+    print(AZUL + "3 - Sacar" + RESET)
+    print(AZUL + "4 - Ver Extrato" + RESET)
+    print(AZUL + "5 - Sair" + RESET)
 
 
 # ----------------------------
@@ -28,7 +36,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
     global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
+    print(AMARELO + f"\nSaldo atual: R$ {saldo:.2f}" + RESET)
 
 
 # ----------------------------
@@ -112,8 +120,9 @@ def main():
         exibir_menu()
         opcao = input("Escolha uma opção: ")
 
-        # TODO 12:
-        # Validar se a opção é numérica.
+        if not opcao.isdigit():
+            print(VERMELHO + "Entrada inválida. Digite um número." + RESET)
+            continue
 
         opcao = int(opcao)
 
@@ -130,11 +139,11 @@ def main():
             ver_extrato()
 
         elif opcao == 5:
-            print("Encerrando sistema...")
+            print(AZUL + "Encerrando sistema..." + RESET)
             break
 
         else:
-            print("Opção inválida!")
+            print(VERMELHO + "Opção inválida!" + RESET)
 
 
 # ----------------------------
