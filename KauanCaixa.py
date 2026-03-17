@@ -1,7 +1,16 @@
+import random
+
+#Cores no Terminal PY
+VERMELHO = "\033[31m"
+VERDE = "\033[32m"
+AMARELO = "\033[33m"
+AZUL = "\033[34m"
+RESET = "\033[0m"
+
 # ==========================================
 # SIMULADOR DE CAIXA ELETRÔNICO
-# Nome:
-# Turma:
+# Nome: Kauan Stipp 
+# Turma: 3º Técnico
 # ==========================================
 
 # ----------------------------
@@ -15,12 +24,12 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
-    print("1 - Consultar Saldo")
-    print("2 - Depositar")
-    print("3 - Sacar")
-    print("4 - Ver Extrato")
-    print("5 - Sair")
+    print(AZUL + "\n====== CAIXA ELETRÔNICO ======" + RESET)
+    print(AZUL + "1 - Consultar Saldo" + RESET)
+    print(AZUL + "2 - Depositar" + RESET)
+    print(AZUL + "3 - Sacar" + RESET)
+    print(AZUL + "4 - Ver Extrato" + RESET)
+    print(AZUL + "5 - Sair" + RESET)
 
 
 # ----------------------------
@@ -28,7 +37,7 @@ def exibir_menu():
 # ----------------------------
 def consultar_saldo():
     global saldo
-    print(f"\nSaldo atual: R$ {saldo:.2f}")
+    print(AMARELO + f"\nSaldo atual: R$ {saldo:.2f}" + RESET)
 
 
 # ----------------------------
@@ -69,6 +78,7 @@ def depositar():
     extrato.append(f"Depósito: +R$ {valor:.2f}")
 
     print(VERDE + "Depósito realizado com sucesso!" + RESET)
+
 
 # ----------------------------
 # FUNÇÃO: sacar
@@ -114,6 +124,7 @@ def sacar():
 
     print(VERDE + "Saque realizado com sucesso!" + RESET)
 
+
 # ----------------------------
 # FUNÇÃO: ver_extrato
 # ----------------------------
@@ -135,6 +146,7 @@ def ver_extrato():
 
     for operacao in extrato:
         print(AMARELO + operacao + RESET)
+
 
 # ----------------------------
 # FUNÇÃO PRINCIPAL
@@ -172,6 +184,7 @@ def main():
 
         else:
             print(VERMELHO + "Opção inválida!" + RESET)
+
 
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
