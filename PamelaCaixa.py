@@ -40,23 +40,21 @@ def depositar():
 
     valor_str = input("Digite o valor para depósito: ")
 
-    # TODO 1:
-    # Validar se a entrada é numérica.
-    # Caso não seja, exibir mensagem de erro e retornar.
+    if not valor_str.replace(".", "", 1).isdigit():
+        print(VERMELHO + "Valor inválido." + RESET)
+        return
 
     valor = float(valor_str)
 
-    # TODO 2:
-    # Verificar se o valor é positivo.
-    # Caso não seja, exibir mensagem de erro e retornar.
+    if valor <= 0:
+        print(VERMELHO + "O valor deve ser positivo." + RESET)
+        return
 
-    # TODO 3:
-    # Atualizar o saldo.
+    saldo = saldo + valor
 
-    # TODO 4:
-    # Registrar a operação na lista extrato.
+    extrato.append(f"Depósito: +R$ {valor:.2f}")
 
-    print("Depósito realizado com sucesso!")
+    print(VERDE + "Depósito realizado com sucesso!" + RESET)
 
 
 # ----------------------------
