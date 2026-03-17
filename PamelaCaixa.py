@@ -66,24 +66,25 @@ def sacar():
 
     valor_str = input("Digite o valor para saque: ")
 
-    # TODO 5:
-    # Validar se a entrada é numérica.
+    if not valor_str.replace(".", "", 1).isdigit():
+        print(VERMELHO + "Valor inválido." + RESET)
+        return
 
     valor = float(valor_str)
 
-    # TODO 6:
-    # Verificar se o valor é positivo.
+    if valor <= 0:
+        print(VERMELHO + "O valor deve ser positivo." + RESET)
+        return
 
-    # TODO 7:
-    # Verificar se há saldo suficiente.
+    if valor > saldo:
+        print(VERMELHO + "Saldo insuficiente." + RESET)
+        return
 
-    # TODO 8:
-    # Atualizar saldo.
+    saldo = saldo - valor
 
-    # TODO 9:
-    # Registrar operação no extrato.
+    extrato.append(f"Saque: -R$ {valor:.2f}")
 
-    print("Saque realizado com sucesso!")
+    print(VERDE + "Saque realizado com sucesso!" + RESET)
 
 
 # ----------------------------
