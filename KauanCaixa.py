@@ -82,22 +82,37 @@ def sacar():
     # TODO 5:
     # Validar se a entrada é numérica.
 
+    if not valor_str.replace(".", "", 1).isdigit():
+        print(VERMELHO + "Valor inválido." + RESET)
+        return
+
     valor = float(valor_str)
 
     # TODO 6:
     # Verificar se o valor é positivo.
 
+    if valor <= 0:
+        print(VERMELHO + "O valor deve ser positivo." + RESET)
+        return
+
     # TODO 7:
     # Verificar se há saldo suficiente.
+
+    if valor > saldo:
+        print(VERMELHO + "Saldo insuficiente." + RESET)
+        return
 
     # TODO 8:
     # Atualizar saldo.
 
+    saldo = saldo - valor
+
     # TODO 9:
     # Registrar operação no extrato.
 
-    print("Saque realizado com sucesso!")
+    extrato.append(f"Saque: -R$ {valor:.2f}")
 
+    print(VERDE + "Saque realizado com sucesso!" + RESET)
 
 # ----------------------------
 # FUNÇÃO: ver_extrato
@@ -127,6 +142,10 @@ def main():
         # TODO 12:
         # Validar se a opção é numérica.
 
+        if not opcao.isdigit():
+            print(VERMELHO + "Entrada inválida. Digite um número." + RESET)
+            continue
+
         opcao = int(opcao)
 
         if opcao == 1:
@@ -142,12 +161,11 @@ def main():
             ver_extrato()
 
         elif opcao == 5:
-            print("Encerrando sistema...")
+            print(AZUL + "Encerrando sistema..." + RESET)
             break
 
         else:
-            print("Opção inválida!")
-
+            print(VERMELHO + "Opção inválida!" + RESET)
 
 # ----------------------------
 # EXECUÇÃO DO SISTEMA
