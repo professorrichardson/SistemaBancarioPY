@@ -3,7 +3,7 @@
 
 # Nome: matheus
 
-# Turma:
+# Turma:3 tecnico
 # ==========================================
 
 # ----------------------------
@@ -17,12 +17,15 @@ extrato = []
 # FUNÇÃO: exibir_menu
 # ----------------------------
 def exibir_menu():
-    print("\n====== CAIXA ELETRÔNICO ======")
+    print("\n" + "="*25)
+    print("     CAIXA ELETRÔNICO")
+    print("="*25)
     print("1 - Consultar Saldo")
     print("2 - Depositar")
     print("3 - Sacar")
     print("4 - Ver Extrato")
     print("5 - Sair")
+    print("-" * 25)
 
 
 # ----------------------------
@@ -133,7 +136,7 @@ def main():
             ver_extrato()
 
         elif opcao == 5:
-            print("Encerrando sistema...")
+            print("Encerrando esse sistema...")
             break
 
         else:
